@@ -193,5 +193,38 @@ h4{
 			</center>
 			</div>
 		</div>
+<script>
+	function getOnlineUsers() {
+	var timer = setInterval(function() {
+	var xhr = new XMLHttpRequest();
+	var container = document.querySelector('.left_menu ul');
+
+	xhr.open('GET', 'sw-online-users.php', true);
+	xhr.send();
+
+	xhr.onreadystatechange = function() {
+		if (xhr.readyState !== 4) return;
+
+		if (xhr.status !== 200) {
+			
+		} else {
+			var users = JSON.parse(xhr.responseText);
+
+			container.innerHTML = '';
+			for(var i = 0; i < users.length; i++) {
+				var userName = document.createElement('li');
+
+				userName.innerText = users[i].name || 'Гость';
+
+				container.appendChild(userName);
+			}
+		}
+	}
+}, 1000);
+	}
+
+	getOnlineUsers();
+
+</script>
 	</body>
 </html>
