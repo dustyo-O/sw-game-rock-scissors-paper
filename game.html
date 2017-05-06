@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Название</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+		<style>
+	
+*{
+	margin: 0;
+	padding: 0;
+}
+html, body{
+	width: 100%;
+	height: 100%;
+	font-family: Georgia, 'Times New Roman', Times, serif;
+	font-size: 15px;
+	background: #dfe2e3;
+	line-height: 18px;
+}
+
+/* Оформление левого меню */
+.left_side{
+	background: #1d282b;
+	width: 300px;
+	position: fixed;
+	left: 0;
+	top: 0;
+	height: 100%;
+	z-index: 5;
+}
+.logo_text{
+	padding: 20px 10px;
+	color:#ffffff;
+	font-size: 24px;
+	line-height: 30px;
+	font-weight: normal;
+	text-align: center;
+}
+.logo_text a{
+	display: inline-block;
+}
+.logo_text span{
+	color:#72898f;
+	font-size: 18px;
+	line-height: 24px;
+	padding: 0 10px 18px;
+	text-align: center;
+	display: block;
+}
+.pole{
+	margin-top: 0px;
+    margin-left: 25px;
+}
+
+
+.left_menu {
+	margin-top: 120px;
+}
+
+.left_menu li{
+	width: 300px;
+	display: block;
+	height: 30px;
+	line-height: 30px;
+	text-align: center;
+}
+.left_menu li a{
+	text-align: center;
+	display: block;
+	line-height: 30px;
+	font-size: 18px;
+	font-family: Georgia, 'Times New Roman', Times, serif;
+	color:#ffffff;
+	text-decoration: none;
+	padding-left: 60px;
+}
+.left_menu li a:hover{
+	background: #343e41;
+}
+/* Стили основного блока */
+.wrapper{
+	position: relative;
+	background: #ffffff;
+	min-height: 200%;
+	min-width: 400px;
+	max-width: 1200px;
+	padding-left: 300px;
+	padding-right: 0px;
+	box-shadow: 0 0 10px rgba(0,0,0,0.2);
+}
+.wrapper a{
+	color:#576a6f;
+}
+
+.text_block{
+	overflow: hidden;
+	color:#4a4a4a;
+	font-size: 18px;
+	padding: 10px 40px 10px;
+}
+h4{
+	color:#4a4a4a;
+	font-size: 36px;
+	line-height: 40px;
+	letter-spacing: 0px;
+	text-transform: uppercase;
+	text-decoration: underline;
+	font-family: Georgia, 'Times New Roman', Times, serif;
+	padding: 40px 0;
+	font-weight: normal;
+	text-align: center;
+	letter-spacing: 3px;
+	word-spacing: 8px;
+	text-shadow: 4px 1px 3px #999;
+}
+
+.paper {
+	display: inline-block;
+}
+
+.stone {
+	display: inline-block;
+}
+
+.scissors {
+	display: inline-block;
+}
+
+
+.knopka {
+	border: #ffffff;
+	border-radius: 5px;
+	background-color: #ffffff;
+}
+
+.knopka:hover {
+	background-color: #92b3bd;
+}
+
+
+
+.knopka:active {
+	background-color: #053746;
+}
+</style>
+
+
+	</head>
+	<body>
+		<div class="left_side">
+			<h1 class="logo_text">
+				<a href=""><img src="logo.png"></a>
+				<span>охрененное название</span>
+			</h1>
+			<div class="pole">
+					<div id="registration">
+      <form class="form-inline">
+  <input type="text" class="input-small" placeholder="Email">
+  <button type="submit" class="btn">Отправить</button>
+</form>
+</div>
+	</div>		
+<div class="left_menu">
+				<ul>
+					<li><a href="shablon.html" id="link_top">Игрок 1</a></li>
+					<li><a href="shablon.html">Игрок 2</a></li>
+					<li><a href="shablon.html">Игрок 3</a></li>
+					<li><a href="shablon.html">Игрок 4</a></li>
+					<li><a href="shablon.html">Игрок 5</a></li>
+					<li><a href="shablon.html">Игрок 6</a></li>
+				</ul>
+</div>
+
+
+			
+		</div>
+		<div class="wrapper">
+			<div class="text_block">
+				<h4>Ваш Ход</h4>
+
+<center>
+<div class="paper">
+			<button class="knopka"><img src="01.png"> </button>
+
+			</div>
+
+			<div class="stone">
+			<button class="knopka"><img src="02.png"></button>
+
+			</div>
+
+			<div class="scissors">
+			<button class="knopka"><img src="03.png"> </button>
+
+			</div>
+	
+			</center>
+			</div>
+		</div>
+	</body>
+</html>
