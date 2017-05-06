@@ -161,39 +161,26 @@ h4{
 </form>
 </div>
 	</div>		
-<div class="left_menu">
-				<ul>
+		<div class="left_menu">
+						<ul>
 
-				</ul>
-</div>
-
-
-			
+						</ul>
+		</div>
 		</div>
 		<div class="wrapper">
 			<div class="text_block">
 				<h4>Ваш Ход</h4>
 
-<center>
-<div class="paper">
-			<button class="knopka"><img src="01.png"> </button>
+				<center class='game-container'>
 
-			</div>
-
-			<div class="stone">
-			<button class="knopka"><img src="02.png"></button>
-
-			</div>
-
-			<div class="scissors">
-			<button class="knopka"><img src="03.png"> </button>
-
-			</div>
-	
-			</center>
+		
+				</center>
 			</div>
 		</div>
 <script>
+	var GAME_SELECTOR = '.game-container';
+	var gameResult;
+
 	function getOnlineUsers() {
 	var timer = setInterval(function() {
 	var xhr = new XMLHttpRequest();
@@ -225,6 +212,121 @@ h4{
 
 	getOnlineUsers();
 
+	function overlay (show) {
+    var overlayDisplay = document.querySelector('.overlaymain');
+    
+    if (show) overlayDisplay.style.display = "block";
+   
+    else overlayDisplay.style.display = "none";
+  
+  }
+
+
+  function pleaseWait(previousState, callback) {
+    show = true;
+    overlay(show);
+
+    var timer = setInterval(function() {
+      
+      var xhr = new XMLHttpRequest();
+      xhr.open('GET', 'sw-game-status.php', true);
+      
+      xhr.send();
+
+      xhr.onreadystatechange = function() {
+        
+        if (xhr.readyState !== 4) return;
+        
+        if (xhr.status !== 200) {
+          container.innerText = 'Ошибка';
+        } 
+        else {
+			var response = JSON.parse(xhr.responseText);
+
+          if (previousState !== response.state) {    
+                overlay(!show);
+				gameResult = response.result;
+                callback();
+          };
+                  
+        }
+      }
+    }, 1000);
+
+  }
+
+  var playItems = [
+	  'Бумага', 'Ножницы', 'Камень'
+  ];
+  
+
+	function begin() {
+		var block = document.querySelector(GAME_SELECTOR);
+		
+		block.innerHTML = '';
+
+		//block.className = 'container';
+
+		for (var i = 0; i < 3; i++) {
+			var button = document.createElement('button');
+
+			button.className = 'play-button knopka';
+			button.setAttribute('data-action', i + 1);
+			button.onclick = play;
+			button.innerHTML = '<img src="0' + (i + 1) +'.png">';
+
+			block.appendChild(button);
+
+		}
+		//document.querySelector('body').appendChild(block);
+	}
+
+	function play() {
+
+		console.log(this);
+		var actionUser = this.getAttribute('data-action');
+
+
+		var xhr = new XMLHttpRequest();
+		// var container = document.querySelector('div');
+
+			xhr.open('GET', 'sw-game-play.php?action=' + actionUser, true);
+			xhr.send();
+			var allButtons = document.querySelectorAll('.play-button');
+			allButtons.forEach(function(item, i) {
+				item.disabled = true;
+			});
+
+			xhr.onreadystatechange = function() {
+				if (xhr.readyState !== 4) return;
+
+				if (xhr.status !== 200) {
+					container.innerText = 'Ошибка';
+					allButtons.forEach(function(item, i) {
+						item.disabled = false;
+					});
+
+				} else {
+					pleaseWait('progress', result);
+				}
+			}
+
+		}
+		
+		function result() {
+			var container = document.querySelector(GAME_SELECTOR);
+			container.innerHTML = '';
+			var message;
+			var opponentTurnText = getOpponentTurn(gameResult);
+			if (gameResult === 1) {
+				message = 'Вы победили! ' + opponentTurnText;
+			} else if (gameResult === -1) {
+				message = 'Вы проиграли! ' + opponentTurnText;
+			} else {
+				message = 'Ничья! ';
+			}
+			container.innerText = message;
+		}
 </script>
 	</body>
 </html>
