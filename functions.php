@@ -1,5 +1,5 @@
 <?php
-$link = mysqli_connect('localhost', 'root', '', 'sw-games');
+$link = mysqli_connect('localhost', 'root', '_rjvcjvjk1983!', 'sw-games');
 
 function e404($body) {
     if (!is_string($body)) {

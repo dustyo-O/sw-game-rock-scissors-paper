@@ -2,8 +2,6 @@
 session_start();
 $username = isset($_GET['name']) ? $_GET['name'] : null;
 
-var_dump($_COOKIE);
-
 include_once 'functions.php';
 
 if (getOnlineUsersCount() >= 2) {
