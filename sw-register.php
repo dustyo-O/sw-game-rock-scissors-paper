@@ -1,5 +1,8 @@
 <?php
+session_start();
 $username = isset($_GET['name']) ? $_GET['name'] : null;
+
+var_dump($_COOKIE);
 
 include_once 'functions.php';
 
@@ -7,6 +10,12 @@ if (getOnlineUsersCount() >= 2) {
     e404(array(
         'message' => 'Слишком много онлайн'
     ));
+}
+
+if (isset($_SESSION['token'])) {
+       e404(array(
+        'message' => 'Вы уже авторизованы'
+    )); 
 }
 
 $token = generateRandomString(32);
@@ -17,8 +26,8 @@ $query = "INSERT INTO `users` VALUES (
     '{$token}', '{$username}', '$actionTime'
 )";
 
-mysql_result($query);
-
+mysqli_query($link, $query);
+$_SESSION['token'] = $token;
 ?>{
     "status": "ok"
 }

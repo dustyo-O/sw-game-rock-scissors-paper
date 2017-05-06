@@ -10,7 +10,7 @@ if (!$token) {
     ));
 } else {
     if (!($gameId = getGameWaitingForStart())) {
-        $gameId = createNewGame();
+        $gameId = createNewGame($token);
     }
 
     echo '{"status": "ok"}';

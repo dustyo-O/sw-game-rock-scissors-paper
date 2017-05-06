@@ -1,10 +1,9 @@
 <?php
-
 $link = mysqli_connect('localhost', 'root', '', 'sw-games');
 
 function e404($body) {
     if (!is_string($body)) {
-        $body = json_encode($body);
+        $body = json_encode($body, JSON_UNESCAPED_UNICODE);
     }
 
     header('HTTP/1.1 404 Not Found');
@@ -25,7 +24,6 @@ function generateRandomString($length = 32) {
 
 function getGameWaitingForStart() {
     global $link;
-    userOnline($token);
     $query = "SELECT * FROM `games` 
     WHERE (`player1token` IS NOT NULL) AND (`player2token` IS NULL)";
     $result = mysqli_query($link, $query);
@@ -146,7 +144,7 @@ function getOnlineUsers() {
 }
 
 function getOnlineUsersCount() {
-    return count(getOnlineUsers);
+    return count(getOnlineUsers());
 }
 
 function userOnline($token) {
@@ -155,5 +153,5 @@ function userOnline($token) {
    $currentTime = time();
    $query = "UPDATE `users` SET 'action-time' = '{$currentTime}' WHERE `token` = '{$token}'"; 
 
-   return mysqli_query($query);
+   return mysqli_query($link, $query);
 }
