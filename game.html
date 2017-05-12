@@ -138,11 +138,272 @@ h4{
 	background-color: #92b3bd;
 }
 
-
-
 .knopka:active {
 	background-color: #053746;
 }
+
+.container {
+  left: 50%;
+  margin: auto -50px;
+  position: absolute;
+  top: 50%;
+}
+.swing div {
+  border-radius: 50%;
+  float: left;
+  height: 1em;
+  width: 1em;
+}
+.swing div:nth-of-type(1) {
+  background: -webkit-linear-gradient(left, #456772 0%, #3b76a5 100%);
+  background: linear-gradient(to right, #456772 0%, #3b76a5 100%);
+}
+.swing div:nth-of-type(2) {
+  background: -webkit-linear-gradient(left, #3b76a5 0%, #3c88c4 100%);
+  background: linear-gradient(to right, #3b76a5 0%, #3c88c4 100%);
+}
+.swing div:nth-of-type(3) {
+  background: -webkit-linear-gradient(left, #3c88c4 0%, #318bd2 100%);
+  background: linear-gradient(to right, #3c88c4 0%, #318bd2 100%);
+}
+.swing div:nth-of-type(4) {
+  background: -webkit-linear-gradient(left, #318bd2 0%, #19a1cb 100%);
+  background: linear-gradient(to right, #318bd2 0%, #19a1cb 100%);
+}
+.swing div:nth-of-type(5) {
+  background: -webkit-linear-gradient(left, #50b9da 0%, #40bae0 100%);
+  background: linear-gradient(to right, #50b9da 0%, #40bae0 100%);
+}
+.swing div:nth-of-type(6) {
+  background: -webkit-linear-gradient(left, #5acaec 0%, #46caf2 100%);
+  background: linear-gradient(to right, #5acaec 0%, #46caf2 100%);
+}
+.swing div:nth-of-type(7) {
+  background: -webkit-linear-gradient(left, #46caf2 0%, #2bccfe 100%);
+  background: linear-gradient(to right, #46caf2 0%, #2bccfe 100%);
+}
+.shadow {
+  clear: left;
+  padding-top: 1.5em;
+}
+.shadow div {
+  -webkit-filter: blur(1px);
+  filter: blur(1px);
+  float: left;
+  width: 1em;
+  height: .25em;
+  border-radius: 50%;
+  background: #cecfd9;
+}
+.shadow .shadow-l {
+  background: #cecfd9;
+}
+.shadow .shadow-r {
+  background: #cecfd9;
+}
+
+.overlaymain {
+	display:none;
+}
+@-webkit-keyframes ball-l {
+  0%, 50% {
+    -webkit-transform: rotate(0) translateX(0);
+    transform: rotate(0) translateX(0);
+  }
+  100% {
+    -webkit-transform: rotate(50deg) translateX(-2.5em);
+    transform: rotate(50deg) translateX(-2.5em);
+  }
+}
+@keyframes ball-l {
+  0%, 50% {
+    -webkit-transform: rotate(0) translate(0);
+    transform: rotate(0) translateX(0);
+  }
+  100% {
+    -webkit-transform: rotate(50deg) translateX(-2.5em);
+    transform: rotate(50deg) translateX(-2.5em);
+  }
+}
+@-webkit-keyframes ball-r {
+  0% {
+    -webkit-transform: rotate(-50deg) translateX(2.5em);
+    transform: rotate(-50deg) translateX(2.5em);
+  }
+  50%,
+  100% {
+    -webkit-transform: rotate(0) translateX(0);
+    transform: rotate(0) translateX(0);
+  }
+}
+@keyframes ball-r {
+  0% {
+    -webkit-transform: rotate(-50deg) translateX(2.5em);
+    transform: rotate(-50deg) translateX(2.5em);
+  }
+  50%,
+  100% {
+    -webkit-transform: rotate(0) translateX(0);
+    transform: rotate(0) translateX(0)
+  }
+}
+@-webkit-keyframes shadow-l-n {
+  0%, 50% {
+    opacity: .5;
+    -webkit-transform: translateX(0);
+    transform: translateX(0);
+  }
+  100% {
+    opacity: .125;
+    -webkit-transform: translateX(-1.57em);
+    transform: translateX(-1.75em);
+  }
+}
+@keyframes shadow-l-n {
+  0%, 50% {
+    opacity: .5;
+    -webkit-transform: translateX(0);
+    transform: translateX(0);
+  }
+  100% {
+    opacity: .125;
+    -webkit-transform: translateX(-1.75);
+    transform: translateX(-1.75em);
+  }
+}
+@-webkit-keyframes shadow-r-n {
+  0% {
+    opacity: .125;
+    -webkit-transform: translateX(1.75em);
+    transform: translateX(1.75em);
+  }
+  50%,
+  100% {
+    opacity: .5;
+    -webkit-transform: translateX(0);
+    transform: translateX(0);
+  }
+}
+@keyframes shadow-r-n {
+  0% {
+    opacity: .125;
+    -webkit-transform: translateX(1.75em);
+    transform: translateX(1.75em);
+  }
+  50%,
+  100% {
+    opacity: .5;
+    -webkit-transform: translateX(0);
+    transform: translateX(0);
+  }
+}
+.swing-l {
+  -webkit-animation: ball-l .425s ease-in-out infinite alternate;
+  animation: ball-l .425s ease-in-out infinite alternate;
+}
+.swing-r {
+  -webkit-animation: ball-r .425s ease-in-out infinite alternate;
+  animation: ball-r .425s ease-in-out infinite alternate;
+}
+.shadow-l {
+  -webkit-animation: shadow-l-n .425s ease-in-out infinite alternate;
+  animation: shadow-l-n .425s ease-in-out infinite alternate;
+}
+.shadow-r {
+  -webkit-animation: shadow-r-n .425s ease-in-out infinite alternate;
+  animation: shadow-r-n .425s ease-in-out infinite alternate;
+}
+
+.btn {
+
+  text-align: center;
+  width: 250px;
+  text-decoration: none;
+  color: #0f343f;
+  display: block;
+  margin: 20px auto;
+  font: normal 16px arial;
+  padding: 10px 0;
+
+}
+
+.btn:not(.active) {
+  background-image: linear-gradient(#99b7c1, #5a8795);
+  text-shadow: 0 0 21px rgba(223, 206, 228, 0.5), 0 -1px 0 #3e5c66;
+}
+
+.btn:not(.active):hover,
+.btn:not(.active):focus {
+  transition: color 200ms linear, text-shadow 500ms linear;
+  color: #fff;
+  text-shadow: 0 0 21px rgba(223, 206, 228, 0.5), 0 0 10px rgba(223, 206, 228, 0.4), 0 0 2px #3e5c66;
+}
+.btn:not(:hover) {
+    transition: 0.6s;
+}
+
+.modal {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		background-color: rgba(0,0,0, .9);
+		z-index: 1;
+		display: none;
+		transition: 5s linear;
+	}
+
+	.modal-inner {
+		opacity: 0;
+		font-family: Roboto;
+		width: 350px;
+		padding: 20px 15px;
+		margin: 20% auto 0 auto;
+		background: #fff;
+		border: 1px solid rgba(0,0,0, .3);
+		border-radius: 2px;
+		box-shadow: 0px 2px 5px rgba(0,0,0, .4);
+		transition: 2s linear;
+	}
+
+	.modal-title {
+		font-size: 1.2em;
+		text-align: center;
+	}
+
+	.modal-body {
+		margin: 1rem 0 0 0;
+		text-align: center;
+	}
+
+	.modal-button {
+		font-size: .8rem;
+		background: none;
+		padding: 10px;			
+		border: 0;
+		border-radius: 2px;
+		width: 100px;
+		transition: 0.2s linear;
+		cursor: pointer;
+		color: #fff;
+		margin: 0 0.2rem;
+		text-transform: uppercase;
+	}
+
+	.modal-button:hover {
+		opacity: 0.85;
+		box-shadow: 2px 1px 5px rgba(0,0,0, .5);
+	}
+
+	.modal-yes {
+		background: #00b4ef;
+	}
+
+	.modal-no {
+		background: #FF3E35;
+	}
+
 </style>
 
 
@@ -156,8 +417,7 @@ h4{
 			<div class="pole">
 					<div id="registration">
       <form class="form-inline">
-  <input type="text" class="input-small" placeholder="Email">
-  <button type="submit" class="btn">Отправить</button>
+  <button type="submit" class="btn modal-open">Выйти</button>
 </form>
 </div>
 	</div>		
@@ -177,9 +437,42 @@ h4{
 				</center>
 			</div>
 		</div>
+<div aria-busy="true" aria-label="Loading" role="progressbar" class="container overlaymain" >
+  <div class="swing">
+    <div class="swing-l"></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div class="swing-r"></div>
+  </div>
+  <div class="shadow">
+    <div class="shadow-l"></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div class="shadow-r"></div>
+  </div>
+ </div>
+		<div class="modal">
+			<div class="modal-inner">
+				<div class="modal-header">
+					<h2 class="modal-title">Вы действительно хотите выйти ?</h2>
+				</div>
+				<div class="modal-body">
+					<button class="modal-button modal-yes">Да</button>
+					<button class="modal-button modal-no">Нет</button>
+				</div>
+			</div>
+	</div>
+
 <script>
 	var GAME_SELECTOR = '.game-container';
 	var gameResult;
+	var start;
 
 	function getOnlineUsers() {
 	var timer = setInterval(function() {
@@ -204,6 +497,13 @@ h4{
 				userName.innerText = users[i].username || 'Гость';
 
 				container.appendChild(userName);
+
+				if (users[i].you) {
+					if (!start) {
+						start = true;
+						startGame();
+					}
+				}
 			}
 		}
 	}
@@ -213,11 +513,11 @@ h4{
 	getOnlineUsers();
 
 	function overlay (show) {
-    //var overlayDisplay = document.querySelector('.overlaymain');
-    
-    //if (show) overlayDisplay.style.display = "block";
-   
-    //else overlayDisplay.style.display = "none";
+		var overlayDisplay = document.querySelector('.overlaymain');
+		
+		if (show) overlayDisplay.style.display = "block";
+	
+		else overlayDisplay.style.display = "none";
   
   }
 
@@ -246,6 +546,7 @@ h4{
           if (previousState !== response.state) {    
                 overlay(!show);
 				gameResult = response.result;
+				clearInterval(timer);
                 callback();
           };
                   
@@ -282,51 +583,99 @@ h4{
 	}
 
 	function play() {
-
-		console.log(this);
 		var actionUser = this.getAttribute('data-action');
 
-
 		var xhr = new XMLHttpRequest();
-		// var container = document.querySelector('div');
 
-			xhr.open('GET', 'sw-game-play.php?action=' + actionUser, true);
+		xhr.open('GET', 'sw-game-play.php?action=' + actionUser, true);
+		xhr.send();
+		var allButtons = document.querySelectorAll('.play-button');
+		allButtons.forEach(function(item, i) {
+			item.disabled = true;
+		});
+
+		xhr.onreadystatechange = function() {
+			if (xhr.readyState !== 4) return;
+
+			if (xhr.status !== 200) {
+				document.querySelector(GAME_SELECTOR).innerText = 'Ошибка';
+				allButtons.forEach(function(item, i) {
+					item.disabled = false;
+				});
+
+			} else {
+				pleaseWait('progress', result);
+			}
+		}
+	}
+		
+	function result() {
+		var container = document.querySelector(GAME_SELECTOR);
+		container.innerHTML = '';
+		var message;
+		var opponentTurnText = '';//getOpponentTurn(gameResult);
+		if (gameResult === 1) {
+			message = 'Вы победили! ' + opponentTurnText;
+		} else if (gameResult === -1) {
+			message = 'Вы проиграли! ' + opponentTurnText;
+		} else {
+			message = 'Ничья! ';
+		}
+		container.innerText = message;
+
+		var newGameButton = document.createElement('button');
+		newGameButton.innerText = 'Новая игра';
+		//newGameButton.className = '';
+		newGameButton.onclick = startGame;
+
+		container.appendChild(newGameButton);
+	}
+
+	function startGame() {
+      var xhr = new XMLHttpRequest();
+      xhr.open('GET', 'sw-game-start.php', true);
+      
+      xhr.send();
+
+      xhr.onreadystatechange = function() {
+        
+        if (xhr.readyState !== 4) return;
+        
+        if (xhr.status !== 200) {
+			alert('error');
+        } 
+        else {
+          pleaseWait('not-started', begin);
+		};
+                  
+        }
+      }
+
+		document.querySelector('.modal-open').onclick = function (e) {
+			e.preventDefault();
+
+			document.querySelector('.modal').style.display = 'block';
+			document.querySelector('.modal-inner').style.opacity = '1'
+		}
+
+		document.querySelector('.modal-no').onclick = function () {
+			document.querySelector('.modal').style.display = 'none';
+		}
+
+		 document.querySelector('.modal-yes').addEventListener('click', function() {
+			var xhr = new XMLHttpRequest();
+			xhr.open('GET', 'sw-logout.php', true);
 			xhr.send();
-			var allButtons = document.querySelectorAll('.play-button');
-			allButtons.forEach(function(item, i) {
-				item.disabled = true;
-			});
 
 			xhr.onreadystatechange = function() {
 				if (xhr.readyState !== 4) return;
 
 				if (xhr.status !== 200) {
-					container.innerText = 'Ошибка';
-					allButtons.forEach(function(item, i) {
-						item.disabled = false;
-					});
-
 				} else {
-					pleaseWait('progress', result);
+					document.location.href = 'auth.html';
 				}
 			}
-
-		}
-		
-		function result() {
-			var container = document.querySelector(GAME_SELECTOR);
-			container.innerHTML = '';
-			var message;
-			var opponentTurnText = getOpponentTurn(gameResult);
-			if (gameResult === 1) {
-				message = 'Вы победили! ' + opponentTurnText;
-			} else if (gameResult === -1) {
-				message = 'Вы проиграли! ' + opponentTurnText;
-			} else {
-				message = 'Ничья! ';
-			}
-			container.innerText = message;
-		}
-</script>
+		 });
+	</script>
 	</body>
 </html>

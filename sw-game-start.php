@@ -9,9 +9,13 @@ if (!$token) {
         'message' => 'Не авторизован'
     ));
 } else {
-    if (!($gameId = getGameWaitingForStart())) {
-        $gameId = createNewGame($token);
+    if (!($game = getGameWaitingForStart())) {
+        $game = createNewGame($token);
+        echo '{"status": "started"}';
+    } else {
+        joinGame($game['id'], $token);
+        echo '{"status": "joined"}';
     }
 
-    echo '{"status": "ok"}';
+    
 }

@@ -1,5 +1,5 @@
 <?php
-$link = mysqli_connect('localhost', 'root', '_rjvcjvjk1983!', 'sw-games');
+$link = mysqli_connect('localhost', 'root', '', 'sw-games');
 
 function e404($body) {
     if (!is_string($body)) {
@@ -25,7 +25,7 @@ function generateRandomString($length = 32) {
 function getGameWaitingForStart() {
     global $link;
     $query = "SELECT * FROM `games` 
-    WHERE (`player1token` IS NOT NULL) AND (`player2token` IS NULL)";
+    WHERE (`player1token` IS NOT NULL) AND (`player2token` IS NULL) ORDER BY `id` DESC";
     $result = mysqli_query($link, $query);
 
     if ($row = mysqli_fetch_assoc($result)) {
@@ -53,7 +53,7 @@ function createNewGame($token) {
 function joinGame($id, $token) {
     global $link;
     userOnline($token);
-    $query = "UPDATE `games` SET `player2token` = '{$token}' WHERE `id` = '$id'";
+    $query = "UPDATE `games` SET `player2token` = '{$token}' WHERE `id` = '{$id}'";
 
     $result = mysqli_query($link, $query);
 
@@ -68,7 +68,8 @@ function getUserGameAndNumber($token) {
     global $link;
     userOnline($token);
     $query = "SELECT * FROM `games` 
-    WHERE (`player1token` = '{$token}') OR (`player2token` = '{$token}')";
+    WHERE (`player1token` = '{$token}') OR (`player2token` = '{$token}') ORDER BY `id` DESC";
+
     $result = mysqli_query($link, $query);
 
     if ($row = mysqli_fetch_assoc($result)) {
@@ -79,7 +80,7 @@ function getUserGameAndNumber($token) {
         }
         return array(
             'number' => $number,
-            'game' => $game
+            'game' => $row
         );
     } else {
         return null;
@@ -100,6 +101,7 @@ function gameTurn($token, $turn) {
 }
 
 function getGameStatus($id) {
+    global $link;
     $query = "SELECT * FROM `games` 
     WHERE `id` = '{$id}'";
     $result = mysqli_query($link, $query);
@@ -127,8 +129,13 @@ function getGameStatusForUser($token) {
     }
 }
 
-function getOnlineUsers() {
+function getOnlineUsers($token) {
     global $link;
+
+    if ($token) {
+        userOnline($token);
+    }
+
     $currentTime = time();
     $onlineTime = $currentTime - 60 * 5;
     $query = "SELECT * FROM `users` WHERE `action-time` > '{$onlineTime}'";
@@ -138,20 +145,30 @@ function getOnlineUsers() {
     $result = mysqli_query($link, $query);
 
     while ($row = mysqli_fetch_assoc($result)) {
+        if ($token === $row['token']) $row['you'] = true;
         $users[] = $row;
     } 
     return $users;
 }
 
 function getOnlineUsersCount() {
-    return count(getOnlineUsers());
+    return count(getOnlineUsers(null));
 }
 
 function userOnline($token) {
     global $link;
 
-   $currentTime = time();
-   $query = "UPDATE `users` SET 'action-time' = '{$currentTime}' WHERE `token` = '{$token}'"; 
+    $currentTime = time();
+    
+    $query = "UPDATE `users` SET `action-time` = '{$currentTime}' WHERE `token` = '{$token}'"; 
 
-   return mysqli_query($link, $query);
+    return mysqli_query($link, $query);
+}
+
+function logoutUser($token) {
+    global $link;
+   
+    $query = "UPDATE `users` SET `action-time` = '0' WHERE `token` = '{$token}'"; 
+
+    return mysqli_query($link, $query);   
 }
