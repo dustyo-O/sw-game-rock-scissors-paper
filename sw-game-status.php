@@ -9,10 +9,7 @@ if (!$token) {
     ));
 } else {
     $status = getGameStatusForUser($token);
-    $response = array(
-        'state' => $status,
-        'result' => 0
-    );
+    $response = $status;
 
     echo json_encode($response, JSON_UNESCAPED_UNICODE);
 }

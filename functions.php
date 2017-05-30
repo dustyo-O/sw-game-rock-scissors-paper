@@ -119,11 +119,28 @@ function getGameStatus($id) {
     }    
 }
 
+function getWinningToken($game_data) {
+    return ($game_data['player1turn'] === $game_data['player2turn']) ?
+        null :
+        $game_data['player' . (($game_data['player1turn'] - $game_data['player2turn'] + 3) % 3 ) . 'token'];
+}
+
+function getGameResultForUser($game_data, $token) {
+    $winner = getWinningToken($game_data);
+
+    if ($winner) return $winner === $token ? 1 : -1;
+
+    return 0;
+}
+
 function getGameStatusForUser($token) {
     userOnline($token);
     $data = getUserGameAndNumber($token);
     if ($data) {
-        return getGameStatus($data['game']['id']);
+        return [ 
+            'state' => getGameStatus($data['game']['id']),
+            'result' => getGameResultForUser($data['game'], $token)
+        ];
     } else {
         return 'error';
     }
